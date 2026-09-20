@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    result = ""
+    result = None
 
     if request.method == "POST":
         age = int(request.form["age"])
@@ -12,13 +12,37 @@ def home():
         food = request.form["food"]
 
         if goal == "Weight Loss":
-            result = f"Healthy suggestion: {food} + vegetables + fruits + plenty of water"
+            suggestion = f"{food} + vegetables + fruits + plenty of water"
+            calories = "Approx. 350–450 kcal"
+            meal = "Healthy meal with vegetables and fruits"
+            ingredients = f"{food}, vegetables, fruits"
+            benefits = "Supports a balanced healthy lifestyle"
+            water = "6–8 glasses per day"
 
         elif goal == "Weight Gain":
-            result = f"Healthy suggestion: {food} + milk + nuts + eggs"
+            suggestion = f"{food} + milk + nuts + eggs"
+            calories = "Approx. 500–650 kcal"
+            meal = "Protein-rich meal with milk and nuts"
+            ingredients = f"{food}, milk, nuts, eggs"
+            benefits = "Provides protein and energy"
+            water = "6–8 glasses per day"
 
         else:
-            result = f"Healthy suggestion: {food} + vegetables + fruits"
+            suggestion = f"{food} + vegetables + fruits"
+            calories = "Approx. 400–500 kcal"
+            meal = "Balanced meal with vegetables and fruits"
+            ingredients = f"{food}, vegetables, fruits"
+            benefits = "Provides a balanced mix of nutrients"
+            water = "6–8 glasses per day"
+
+        result = {
+            "suggestion": suggestion,
+            "calories": calories,
+            "meal": meal,
+            "ingredients": ingredients,
+            "benefits": benefits,
+            "water": water
+        }
 
     return render_template("index.html", result=result)
 
