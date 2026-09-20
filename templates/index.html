@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Healthy Food Customizer</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #e8f5e9;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            max-width: 450px;
+            margin: auto;
+            border-radius: 15px;
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 12px;
+            margin: 10px;
+        }
+
+        button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #c8e6c9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🥗 AI Healthy Food Customizer</h1>
+
+    <form method="POST">
+
+        <input type="number" name="age"
+               placeholder="Enter your age" required>
+
+        <select name="goal">
+            <option>Weight Loss</option>
+            <option>Weight Gain</option>
+            <option>Healthy Lifestyle</option>
+        </select>
+
+        <input type="text" name="food"
+               placeholder="Enter your favorite food" required>
+
+        <button type="submit">Get Food Suggestion</button>
+
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h3>🍎 AI Recommendation</h3>
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
