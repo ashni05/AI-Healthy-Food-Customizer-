@@ -2,71 +2,142 @@
 <html>
 <head>
     <title>AI Healthy Food Customizer</title>
+
     <style>
         body {
-            font-family: Arial;
-            background: #e8f5e9;
-            text-align: center;
-            padding: 50px;
+            font-family: Arial, sans-serif;
+            background: #f0fff4;
+            margin: 0;
+            padding: 0;
         }
 
-        .box {
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
             background: white;
             padding: 30px;
-            max-width: 450px;
-            margin: auto;
             border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #198754;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
         }
 
         input, select, button {
-            width: 90%;
+            width: 100%;
             padding: 12px;
-            margin: 10px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
         button {
-            background: #2e7d32;
+            background: #198754;
             color: white;
             border: none;
-            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #146c43;
         }
 
         .result {
-            margin-top: 20px;
-            padding: 15px;
-            background: #c8e6c9;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e9f9ee;
+            border-radius: 12px;
+        }
+
+        .result h2 {
+            color: #198754;
+        }
+
+        .card {
+            background: white;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
         }
     </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
+
     <h1>🥗 AI Healthy Food Customizer</h1>
 
     <form method="POST">
 
-        <input type="number" name="age"
-               placeholder="Enter your age" required>
+        <label>Age</label>
+        <input type="number" name="age" placeholder="Enter your age" required>
 
-        <select name="goal">
-            <option>Weight Loss</option>
-            <option>Weight Gain</option>
-            <option>Healthy Lifestyle</option>
+        <label>Health Goal</label>
+        <select name="goal" required>
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Weight Gain">Weight Gain</option>
+            <option value="Healthy Lifestyle">Healthy Lifestyle</option>
         </select>
 
-        <input type="text" name="food"
-               placeholder="Enter your favorite food" required>
+        <label>Favorite Food</label>
+        <input type="text" name="food" placeholder="Example: Dosa" required>
 
         <button type="submit">Get Food Suggestion</button>
 
     </form>
 
+
     {% if result %}
+
     <div class="result">
-        <h3>🍎 AI Recommendation</h3>
-        <p>{{ result }}</p>
+
+        <h2>🍎 AI Recommendation</h2>
+
+        <div class="card">
+            <b>🥗 Healthy Suggestion</b>
+            <p>{{ result.suggestion }}</p>
+        </div>
+
+        <div class="card">
+            <b>🔥 Calories</b>
+            <p>{{ result.calories }}</p>
+        </div>
+
+        <div class="card">
+            <b>🍽️ Meal Plan</b>
+            <p>{{ result.meal }}</p>
+        </div>
+
+        <div class="card">
+            <b>🥦 Ingredients</b>
+            <p>{{ result.ingredients }}</p>
+        </div>
+
+        <div class="card">
+            <b>💪 Health Benefits</b>
+            <p>{{ result.benefits }}</p>
+        </div>
+
+        <div class="card">
+            <b>💧 Water Intake</b>
+            <p>{{ result.water }}</p>
+        </div>
+
     </div>
+
     {% endif %}
 
 </div>
